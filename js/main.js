@@ -75,14 +75,14 @@ posts.forEach(post => {
     </div>
     <div class="post__text">${post.content}</div>
     <div class="post__image">
-        <img src="${post.media}" alt="">
+        <img src="${post.media}" alt="${post.author.name}">
     </div>
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
                 <a class="like-button  js-like-button" href="#" data-postid="${post.id}">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                    <span class="like-button__label">${post.likes}</span>
+                    <span class="like-button__label">Mi piace</span>
                 </a>
             </div>
             <div class="likes__counter">
@@ -95,12 +95,22 @@ posts.forEach(post => {
 }); 
 
 const likeButtons = document.querySelectorAll('a.like-button');
+const likesCounters = document.querySelectorAll('b.js-likes-counter');
 
+for (let index = 0; index < likeButtons.length; index++) {
+    const likeButton = likeButtons[index];
+    const likesCounter = likesCounters[index];
 
-likeButtons.forEach((likeButton) => {
     likeButton.addEventListener('click', function(event){
         event.preventDefault();
-        likeButton.classList.toggle('like-button--liked');
+        if (likeButton.classList.contains('like-button--liked')){
+            likeButton.classList.remove('like-button--liked')
+            likesCounter.innerHTML = parseInt(likesCounter.innerHTML, 10) - 1;
+        } else{
+            likeButton.classList.add('like-button--liked')
+            likesCounter.innerHTML = parseInt(likesCounter.innerHTML, 10) + 1;
+        }
     })
-})
+}
+
 
