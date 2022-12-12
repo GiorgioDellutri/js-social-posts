@@ -98,7 +98,8 @@ const likeButtons = document.querySelectorAll('a.like-button');
 
 
 likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener('click', function(){
+    likeButton.addEventListener('click', function(event){
+        event.preventDefault();
         likeButton.classList.toggle('like-button--liked');
     })
 })
