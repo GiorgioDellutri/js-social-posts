@@ -91,4 +91,15 @@ posts.forEach(post => {
         </div> 
     </div>            
 </div> `
-});
+
+}); 
+
+const likeButtons = document.querySelectorAll('a.like-button');
+
+
+likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener('click', function(){
+        likeButton.classList.toggle('like-button--liked');
+    })
+})
+
